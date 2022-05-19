@@ -1,0 +1,28 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[binaryage/devtools "1.0.6"]
+  [reagent "1.1.1"]]
+
+ :dev-http {8080 "public"}
+
+ :deps true
+ :builds
+ {:frontend {:target  :browser
+             :modules {:main {:init-fn meigen.frontend.app/init}}}
+  :app      {:target     :browser
+             :output-dir "public/js"
+             :asset-path "/js"
+
+             :modules
+             {:main
+              {:entries [meigen.core]}}
+
+             :devtools
+             {:after-load meigen.core/init
+              :http-root  "public"
+              :http-port  3000}}}}
