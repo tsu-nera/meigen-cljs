@@ -6,11 +6,12 @@
 
  :dependencies
  [[binaryage/devtools "1.0.6"]
-  [reagent "1.1.1"]]
+  [reagent "1.1.1"]
+  [cider/cider-nrepl "0.28.4"]]
 
  :dev-http {8080 "public"}
 
- :deps true
+ ;; :deps true
  :builds
  {:frontend {:target  :browser
              :modules {:main {:init-fn meigen.frontend.app/init}}}

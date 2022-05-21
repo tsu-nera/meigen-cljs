@@ -1,5 +1,19 @@
-(ns meigen.core)
+(ns meigen.core
+  (:require [reagent.core :as r]
+            [reagent.dom :as rd]))
 
-(defn init []
-  (js/alert "test")
-  (println "テスト"))
+(def greeting "Hello World!")
+
+(defn app []
+  [:div greeting])
+
+(defn stop []
+  (js/console.log "Stopping..."))
+
+(defn start []
+  (js/console.log "Starting...")
+  (rd/render [app]
+             (.getElementById js/document "app")))
+
+(defn ^:export init []
+  (start))
