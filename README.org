@@ -1,0 +1,3 @@
+* meigen-cljs
+
+ref. [[https://futurismo.biz/rails-meigen-2015/][Ruby on Railsで努力の名言を表示するのサイトを作成した | Futurismo]]
