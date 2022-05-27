@@ -1,3 +1,8 @@
 * meigen-cljs
 
-ref. [[https://futurismo.biz/rails-meigen-2015/][Ruby on Railsで努力の名言を表示するのサイトを作成した | Futurismo]]
+- [[https://futurismo.biz/rails-meigen-2015/][Ruby on Railsで努力の名言を表示するのサイトを作成した | Futurismo]]
+  - https://github.com/tsu-nera/meigen_rails
+- [[https://futurismo.biz/meigen-twiter-bot-clojure-2022/][Clojureで努力の名言Twitter Botを作成した | Futurismo]]
+  - https://github.com/tsu-nera/meigen-bot-clj
+- [[https://futurismo.biz/meigen-twiter-bot-clojure-firebase-2022/][Clojure/Firebaseで努力の名言Serverless Twitter Bot作成した | Futurismo]]
+  - https://github.com/tsu-nera/meigen-bot-firebase-clj
