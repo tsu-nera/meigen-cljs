@@ -2,6 +2,6 @@
   (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- ::todos
+ ::meigens
  (fn [db]
-   (-> db :todos vals)))
+   (-> db :meigens)))

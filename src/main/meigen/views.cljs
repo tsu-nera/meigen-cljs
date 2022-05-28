@@ -6,42 +6,39 @@
    [re-frame.core :as re-frame]
    [meigen.subs :as subs]))
 
-(defn todo-item
-  [{:keys [id completed] :as todo}]
+(defn meigen-item
+  [{:keys [content author]}]
   [:li
-   [:input {:type      "checkbox"
-            :class     "toggle"
-            :checked   (and completed "checked")
-            :on-change #(re-frame/dispatch [::events/toggle id])}]
-   [:span {:class (when completed "completed")}
-    (:title todo)]
+   (str content " " author)
+   #_[:input {:type      "checkbox"
+              :class     "toggle"
+              :checked   (and completed "checked")
+              :on-change #(re-frame/dispatch [::events/toggle id])}]
+   #_[:span {:class    "delete"
+             :on-click #(re-frame/dispatch [::events/delete id])}
+      "[x]"]])
 
-   ;; 追加
-   [:span {:class    "delete"
-           :on-click #(re-frame/dispatch [::events/delete id])}
-    "[x]"]])
+#_(defn meigen-input
+    []
+    (let [val (r/atom "")]
+      (fn []
+        [:input {:type        "text"
+                 :value       @val
+                 :class       "new-meigen"
+                 :placeholder "What needs to be done?"
+                 :on-change   #(reset! val (-> % .-target .-value))
+                 :on-key-down #(when (= (.-which %) 13)
+                                 (let [title (-> @val str/trim)]
+                                   (when (seq title)
+                                     (re-frame/dispatch [::events/add-meigen title]))
+                                   (reset! val "")))}])))
 
-(defn todo-input
+(defn meigen-list
   []
-  (let [val (r/atom "")]
-    (fn []
-      [:input {:type        "text"
-               :value       @val
-               :class       "new-todo"
-               :placeholder "What needs to be done?"
-               :on-change   #(reset! val (-> % .-target .-value))
-               :on-key-down #(when (= (.-which %) 13)
-                               (let [title (-> @val str/trim)]
-                                 (when (seq title)
-                                   (re-frame/dispatch [::events/add-todo title]))
-                                 (reset! val "")))}])))
-
-(defn todo-list
-  []
-  (let [todos @(re-frame/subscribe [::subs/todos])]
+  (let [meigens @(re-frame/subscribe [::subs/meigens])]
     [:div
-     [todo-input]
+     #_[meigen-input]
      [:ul
-      (for [todo todos]
-        ^{:key (:id todo)}
-        [todo-item todo])]]))
+      (for [meigen meigens]
+        ^{:key (:id meigen)}
+        [meigen-item meigen])]]))

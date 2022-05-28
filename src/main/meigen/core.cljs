@@ -13,7 +13,7 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (rd/render [views/todo-list]
+  (rd/render [views/meigen-list]
              (.getElementById js/document "app")))
 
 (defn ^:export init []
